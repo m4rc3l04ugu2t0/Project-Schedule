@@ -30,7 +30,7 @@ app.use(routes);
 app.use(middlewareGlobal);
 
 moogose
-  .connect(port)
+  .connect(port || 3000)
   .then(() => {
     console.log("veremos");
     app.emit("on");
