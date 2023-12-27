@@ -1,0 +1,1 @@
+{"version":3,"file":"bundle.js","mappings":"AAAAA,QAAQC,IAAI,iBACZC,MAAM","sources":["webpack://backend/./public/js/main.js"],"sourcesContent":["console.log(\"wello word!!!\");\nalert(\"oaanna\");\n"],"names":["console","log","alert"],"sourceRoot":""}
