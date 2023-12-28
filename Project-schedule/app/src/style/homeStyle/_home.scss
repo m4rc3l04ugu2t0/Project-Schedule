@@ -1,11 +1,24 @@
-.container-navbar {
-  width: 100%;
-  height: 100%;
-}
+.container-navbar-left {
+  // width: 100%;
+  // max-width: 350px;
 
-.side-left {
-  width: 150px;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
 
-  background-color: brown;
+  background-color: rgb(71, 92, 85);
+  .side-left {
+    width: 100%;
+    height: 100%;
+    background-color: darkcyan;
+    button {
+      color: white;
+      background-color: black;
+
+      border: none;
+
+      span {
+        font-size: 2.5rem;
+      }
+    }
+  }
 }
