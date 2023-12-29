@@ -11,14 +11,16 @@ const wss = new WebSocket.Server({ server });
 const moogose = require("mongoose");
 const path = require("path");
 
-const { middlewareGlobal } = require("./src/middlewares/middleware");
+const csurf = require("csurf");
+
+const { csurfMiddleware } = require("./src/middlewares/csurfMiddleware");
 
 const routes = require("./router");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
-  "/public",
+  "public",
   express.static(path.resolve(__dirname, "public"), {
     "Content-Type": "application/javascript",
   })
@@ -26,8 +28,10 @@ app.use(
 app.set("views", path.resolve(__dirname, "src", "views", "page"));
 app.set("view engine", "ejs");
 
+app.use(csurf);
+app.use(csurfMiddleware);
 app.use(routes);
-app.use(middlewareGlobal);
+// app.use(middlewareGlobal);
 
 moogose
   .connect(port || 3000)
