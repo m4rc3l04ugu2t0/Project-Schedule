@@ -1,0 +1,12 @@
+@mixin corlors() {
+}
+
+@mixin sizes($sizeW, $sizeH) {
+  width: $size;
+
+  height: $size;
+}
+
+@mixin displays($prop) {
+  display: $prop;
+}
