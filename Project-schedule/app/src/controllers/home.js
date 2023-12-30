@@ -1,5 +1,3 @@
-exports.pageHome = (req, res, next) => {
+exports.pageHome = (req, res) => {
   res.render("pageHome");
-
-  next();
 };

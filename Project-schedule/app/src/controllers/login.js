@@ -4,7 +4,7 @@ exports.pageLogin = (req, res) => {
   res.render("pageLogin");
 };
 
-exports.LoginPost = (req, res, next) => {
+exports.LoginPost = (req, res) => {
   const { name, email, password } = req.body;
   HomeModel.create({
     userName: name,
