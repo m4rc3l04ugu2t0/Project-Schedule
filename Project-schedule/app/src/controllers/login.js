@@ -1,16 +1,25 @@
-const HomeModel = require("../models/homeModel");
+const Login = require("../models/LoginModel");
 
-exports.pageLogin = (req, res) => {
-  res.render("pageLogin");
+exports.pageSingIn = (req, res) => {
+  res.render("pageSingIn");
 };
 
-exports.LoginPost = (req, res) => {
-  const { name, email, password } = req.body;
-  HomeModel.create({
-    userName: name,
-    userEmail: email,
-    userPassword: password,
-  }).then((response) => {
-    console.log(response);
-  });
+exports.postSingIn = (req, res) => {
+  res.send(req.body);
+};
+
+exports.pageRegistre = (req, res) => {
+  res.render("pageRegistre");
+};
+
+// exports.pageRegistered = (req, res) => {
+//   res.send("dd");
+// };
+console.log("oxiii", Login);
+
+exports.postRegistered = (req, res) => {
+  const login = new Login(req.body);
+  login.resgisterUser();
+
+  res.send(login.error);
 };
