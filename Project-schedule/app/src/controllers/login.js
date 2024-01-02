@@ -15,11 +15,18 @@ exports.pageRegistre = (req, res) => {
 // exports.pageRegistered = (req, res) => {
 //   res.send("dd");
 // };
-console.log("oxiii", Login);
 
-exports.postRegistered = (req, res) => {
+exports.postRegistered = async (req, res) => {
   const login = new Login(req.body);
-  login.resgisterUser();
+  await login.resgisterUser();
 
-  res.send(login.error);
+  if (login.error.length > 0) {
+    req.flash("errors", login.error);
+    req.session.save(() => {
+      return res.redirect("back");
+    });
+    return;
+  }
+
+  res.send(login.user);
 };

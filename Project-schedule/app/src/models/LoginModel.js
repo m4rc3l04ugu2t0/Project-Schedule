@@ -17,11 +17,15 @@ class Login {
   }
 
   async resgisterUser() {
-    this.validate();
+    try {
+      this.validate();
 
-    if (this.error.length > 0) return;
+      if (this.error.length > 0) return;
 
-    this.user = await LoginModel.create(this.body);
+      this.user = await LoginModel.create(this.body);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   validate() {
