@@ -17,16 +17,21 @@ exports.pageRegistre = (req, res) => {
 // };
 
 exports.postRegistered = async (req, res) => {
-  const login = new Login(req.body);
-  await login.resgisterUser();
+  try {
+    console.log(req.body);
+    const login = new Login(req.body);
+    await login.resgisterUser();
 
-  if (login.error.length > 0) {
-    req.flash("errors", login.error);
-    req.session.save(() => {
-      return res.redirect("back");
-    });
-    return;
+    if (login.error.length > 0) {
+      req.flash("errors", login.error);
+      req.session.save(() => {
+        return res.redirect("back");
+      });
+      return;
+    }
+    res.render("registered");
+  } catch (error) {
+    console.log(error);
+    res.render("pageError");
   }
-
-  res.send(login.user);
 };

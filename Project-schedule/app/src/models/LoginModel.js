@@ -18,6 +18,7 @@ class Login {
 
   async resgisterUser() {
     try {
+      console.log(validator.isEmail(this.body.email));
       this.validate();
 
       if (this.error.length > 0) return;

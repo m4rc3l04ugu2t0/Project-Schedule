@@ -13,11 +13,11 @@ route.get("/", manageHome.pageHome);
 route.get("/login/sing-in", manageLogin.pageSingIn);
 route.post("/login/sing-in", manageLogin.postSingIn);
 
-// router register
-route.get("/login/register", manageLogin.pageRegistre);
-
 // router registered
 // route.get("/login/register/registered", manageLogin.pageRegistered);
 route.post("/login/register/registered", manageLogin.postRegistered);
+
+// router register
+route.get("/login/register", manageLogin.pageRegistre);
 
 module.exports = route;
