@@ -21,6 +21,7 @@ class Login {
       console.log(validator.isEmail(this.body.email));
       this.validate();
 
+      console.log(this.error.length);
       if (this.error.length > 0) return;
 
       this.user = await LoginModel.create(this.body);
@@ -34,16 +35,15 @@ class Login {
 
     if (!validator.isEmail(this.body.email)) this.error.push("Email invalido!");
 
-    if (this.body.password < 8 || this.body.password > 50) {
+    if (this.body.password.length < 8 || this.body.password.length > 50) {
       this.error.push("Numero de caracteres invalido!");
     }
   }
 
   cleanUp() {
     for (let key in this.body) {
-      if (typeof this.body[key] !== String) {
-        this.body[key] = "";
-      }
+      // Removendo a verificação do tipo
+      this.body[key] = this.body[key].trim();
     }
 
     this.body = {

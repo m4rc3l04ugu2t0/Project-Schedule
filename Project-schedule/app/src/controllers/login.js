@@ -21,7 +21,7 @@ exports.postRegistered = async (req, res) => {
     console.log(req.body);
     const login = new Login(req.body);
     await login.resgisterUser();
-
+    console.log(login.error.length > 0);
     if (login.error.length > 0) {
       req.flash("errors", login.error);
       req.session.save(() => {
