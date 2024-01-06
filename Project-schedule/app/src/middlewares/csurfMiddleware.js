@@ -1,8 +1,16 @@
-exports.csurfMiddleware = (err, res, req, next) => {req.csrfToken()
-  req.csrfToken();
-  if (err) {
-    console.log(err);
-  }
+const csurf = require("@dr.pogodin/csurf");
+const csrfProtection = csurf({ cookie: true });
 
-  next();
-};
+function csrfMiddleware(req, res, next) {
+  // Adiciona a proteção CSRF a todas as rotas
+  csrfProtection(req, res, (err) => {
+    if (err && err.code === "EBADCSRFTOKEN") {
+      // Token CSRF inválido
+      return res.status(403).send("Invalid CSRF token");
+    }
+    // Continua para o próximo middleware
+    next();
+  });
+}
+
+module.exports = csrfMiddleware;

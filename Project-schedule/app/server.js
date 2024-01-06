@@ -14,14 +14,18 @@ const session = require("express-session");
 const cookieParse = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
+const helmet = require("helmet");
 
-const csurf = require("@dr.pogodin/csurf");
+// const csurf = require("@dr.pogodin/csurf");
+// const csrfProtection = csurf({ cookie: true });
 
 const { middlewareGlobal } = require("./src/middlewares/middleware");
+const csrfMiddleware = require("./src/middlewares/csurfMiddleware");
 
 const routes = require("./router");
-const { json } = require("body-parser");
 
+app.use(helmet());
+// app.use(csrfProtection);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
@@ -44,11 +48,13 @@ app.set("views", path.resolve(__dirname, "src", "views", "page"));
 app.set("view engine", "ejs");
 // app.set("trust proxy", 1);
 
+app.disable("x-powered-by");
 app.use(cookieParse());
-// app.use(csurf);
 // app.use(csurfMiddleware);
 
 app.use(middlewareGlobal);
+app.use(csrfMiddleware);
+
 app.use(routes);
 
 // const sessionOptions = session({

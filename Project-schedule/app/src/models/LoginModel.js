@@ -30,14 +30,10 @@ class Login {
       return;
     }
 
-    try {
-      const randomSalt = randomInt(10, 16);
-      const passwordHash = await hash(this.body.password, randomSalt);
-      this.body.password = passwordHash;
-      this.user = await LoginModel.create(this.body);
-    } catch (error) {
-      console.log(error);
-    }
+    const randomSalt = randomInt(10, 16);
+    const passwordHash = await hash(this.body.password, randomSalt);
+    this.body.password = passwordHash;
+    this.user = await LoginModel.create(this.body);
   }
 
   async checkEmailExists() {
