@@ -65,7 +65,7 @@ app.use(routes);
 // });
 
 moogose
-  .connect(CONNECTIONSTRING)
+  .connect(CONNECTIONSTRING || 3000)
   .then(() => {
     console.log("veremos");
     app.emit("on");

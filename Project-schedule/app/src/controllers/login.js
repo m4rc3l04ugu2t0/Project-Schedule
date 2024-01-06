@@ -29,7 +29,11 @@ exports.postRegistered = async (req, res) => {
       });
       return;
     }
-    res.render("registered");
+    req.flash("success", "sucessowwwww");
+
+    req.session.save(() => {
+      res.render("registered");
+    });
   } catch (error) {
     console.log(error);
     res.render("pageError");
