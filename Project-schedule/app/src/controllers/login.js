@@ -4,17 +4,21 @@ exports.pageSingIn = (req, res) => {
   res.render("pageSingIn");
 };
 
-exports.postSingIn = (req, res) => {
-  res.send(req.body);
+exports.logado = async (req, res) => {
+  const login = new Login(req.body);
+  await login.checkUserExists();
+
+  if (login.error.length > 0) {
+    console.log(login.error);
+    return;
+  }
+
+  console.log("user logado!");
 };
 
 exports.pageRegistre = (req, res) => {
   res.render("pageRegistre");
 };
-
-// exports.pageRegistered = (req, res) => {
-//   res.send("dd");
-// };
 
 exports.postRegistered = async (req, res) => {
   try {

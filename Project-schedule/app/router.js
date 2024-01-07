@@ -11,7 +11,7 @@ route.get("/", manageHome.pageHome);
 
 // router to enter
 route.get("/login/sing-in", manageLogin.pageSingIn);
-route.post("/login/sing-in", manageLogin.postSingIn);
+route.post("/login/sing-in/logado", manageLogin.logado);
 
 // router registered
 // route.get("/login/register/registered", manageLogin.pageRegistered);
