@@ -21,16 +21,16 @@ exports.postRegistered = async (req, res) => {
     console.log(req.body);
     const login = new Login(req.body);
     await login.resgisterUser();
-    console.log(login.error.length > 0);
+
     if (login.error.length > 0) {
       req.flash("errors", login.error);
       req.session.save(() => {
-        return res.redirect("back");
+        res.redirect("back");
       });
-      return;
+      return; // Adicione um return aqui para evitar a execução adicional
     }
-    req.flash("success", "sucessowwwww");
 
+    req.flash("success", "sucesso");
     req.session.save(() => {
       res.render("registered");
     });

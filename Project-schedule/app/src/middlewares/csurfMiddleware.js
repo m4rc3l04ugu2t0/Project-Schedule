@@ -8,6 +8,8 @@ function csrfMiddleware(req, res, next) {
       // Token CSRF inválido
       return res.status(403).send("Invalid CSRF token");
     }
+
+    res.locals.csrfToken = req.csrfToken();
     // Continua para o próximo middleware
     next();
   });
