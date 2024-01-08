@@ -34,8 +34,9 @@ $secondary-color: #333; // Cor secundária (preto no exemplo)
 }
 
 .menu-left {
-  width: 100%;
-  height: 100%;
+  display: flex\s;
 
   background-color: brown;
+
+  max-width: 200px;
 }

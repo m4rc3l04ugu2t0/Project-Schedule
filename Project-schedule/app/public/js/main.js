@@ -1,26 +1,19 @@
-import { handleOpenMenu } from "../js/scriptAside/asideLeft/asideLeft";
+import { handleOpenMenu } from "./scriptAside/menuLeft/asideLeft";
+
 import "../../src/style/main.scss";
 import "../../public/assets/css/styleHome/style.scss";
 import "../../public/assets/css/styleRegister/style.scss";
 
-const handleDocumentOnclick = (event) => {
-  const elementClicked = event.target;
-  console.log(elementClicked);
+const handleDocumentOnClick = (e) => {
+  const elementClicked = e.target;
 
-  return elementClicked;
-};
+  console.log(elementClicked.className);
 
-const handleLoadPage = () => {
-  document.addEventListener("click", handleDocumentOnclick);
-
-  if (window.location.pathname === "/") {
+  if (elementClicked.className === "aside-left-off") {
     handleOpenMenu();
-    return;
   }
-
-  console.log("Não no carregamento da página");
 };
 
-document.addEventListener("DOMContentLoaded", handleLoadPage);
+document.addEventListener("click", handleDocumentOnClick);
 
 console.log("Hello, World!");
