@@ -1,19 +1,26 @@
+import { handleOpenMenu } from "../js/scriptAside/asideLeft/asideLeft";
 import "../../src/style/main.scss";
-import { handleNavLeft } from "./scriptAside/asideLeft/asideLeft";
+import "../../public/assets/css/styleHome/style.scss";
+import "../../public/assets/css/styleRegister/style.scss";
 
-const elementOnCLick = {};
+const handleDocumentOnclick = (event) => {
+  const elementClicked = event.target;
+  console.log(elementClicked);
 
-let onOff = false;
-
-const handleEventClick = (e) => {
-  const elemet = e.target;
-
-  if (elemet.className === "aside-left-off") {
-    onOff = !onOff;
-    handleNavLeft(onOff);
-  }
+  return elementClicked;
 };
 
-document.addEventListener("click", handleEventClick);
+const handleLoadPage = () => {
+  document.addEventListener("click", handleDocumentOnclick);
 
-console.log("wello word!!!");
+  if (window.location.pathname === "/") {
+    handleOpenMenu();
+    return;
+  }
+
+  console.log("Não no carregamento da página");
+};
+
+document.addEventListener("DOMContentLoaded", handleLoadPage);
+
+console.log("Hello, World!");

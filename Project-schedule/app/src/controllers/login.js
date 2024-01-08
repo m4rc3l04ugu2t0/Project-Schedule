@@ -9,11 +9,14 @@ exports.logado = async (req, res) => {
   await login.checkUserExists();
 
   if (login.error.length > 0) {
-    console.log(login.error);
+    req.flash("errorLogin", login.error);
+    req.session.save(() => {
+      res.redirect("back");
+    });
     return;
   }
 
-  console.log("user logado!");
+  res.render("logado");
 };
 
 exports.pageRegistre = (req, res) => {

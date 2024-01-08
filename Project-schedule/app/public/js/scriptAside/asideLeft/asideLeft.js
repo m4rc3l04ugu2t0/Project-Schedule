@@ -1,16 +1,11 @@
-const conatinerNavLeft = document.querySelector(".container-navbar-left");
-const btnNavLeft = document.querySelector(".btn-nav-left");
-const inconMenu = document.querySelector(".aside-left-off");
+const menuLeft = document.querySelector(".menu-left");
+const btnOnOffMenu = document.querySelector(".btn-on-off-menu");
 
-export const handleNavLeft = (value) => {
-  if (!value) {
-    conatinerNavLeft.style.width = "";
-    conatinerNavLeft.style.heigth = "";
-    inconMenu.innerHTML = "menu";
-    return;
+export const handleOpenMenu = (elementClicked) => {
+  if (elementClicked.className !== "menu-left") {
+    console.log("nooooo");
   }
+  console.log("open");
 
-  conatinerNavLeft.style.width = "300px";
-  conatinerNavLeft.style.heigth = "100%";
-  inconMenu.innerHTML = "close";
+  menuLeft.style.width = "200px";
 };

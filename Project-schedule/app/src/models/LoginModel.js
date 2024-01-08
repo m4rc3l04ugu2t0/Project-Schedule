@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const { hash, compare } = require("bcrypt");
 const { randomInt } = require("node:crypto");
-const { use } = require("../../router");
 
 const LoginSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -42,15 +41,19 @@ class Login {
 
     if (!emailExists) {
       this.error.push("Email não cadastrado!");
+      return;
     }
 
-    await compare(this.user.password, hash, (err, result) => {
-      if (err) {
-        this.error.push("Senha invalida!");
-      }
-    });
-  }
+    const user = await LoginModel.findOne({ email: this.body.email });
 
+    if (user) {
+      const passwordMatch = await compare(this.body.password, user.password);
+
+      if (!passwordMatch) {
+        this.error.push("Senha inválida!");
+      }
+    }
+  }
   async checkEmailExists() {
     const user = await LoginModel.findOne({ email: this.body.email });
     return user !== null;
