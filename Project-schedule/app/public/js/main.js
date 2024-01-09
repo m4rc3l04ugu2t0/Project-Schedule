@@ -1,4 +1,4 @@
-import { handleOpenMenu } from "./scriptAside/menuLeft/asideLeft";
+import { toggleMenu } from "./scriptHome";
 
 import "../../src/style/main.scss";
 import "../../public/assets/css/styleHome/style.scss";
@@ -9,8 +9,8 @@ const handleDocumentOnClick = (e) => {
 
   console.log(elementClicked.className);
 
-  if (elementClicked.className === "aside-left-off") {
-    handleOpenMenu();
+  if (elementClicked.className === "bi bi-list") {
+    toggleMenu();
   }
 };
 
