@@ -1,8 +1,8 @@
-import { toggleMenu } from "./scriptHome";
-
 import "../../src/style/main.scss";
 import "../../public/assets/css/styleHome/style.scss";
 import "../../public/assets/css/styleRegister/style.scss";
+
+import { toggleMenu } from "./scriptHome";
 
 const handleDocumentOnClick = (e) => {
   const elementClicked = e.target;

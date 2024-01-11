@@ -21,7 +21,7 @@ class Login {
   async resgisterUser() {
     this.validate();
 
-    if (this.error.length > 0) return;
+    if (this.error.length) return;
 
     const emailExists = await this.checkEmailExists();
 
