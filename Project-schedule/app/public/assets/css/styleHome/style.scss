@@ -8,6 +8,13 @@
   align-items: center;
 }
 
+.container-main-content {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+}
+
 .aside-menu {
   button {
     font-size: 2.5rem;
@@ -37,11 +44,48 @@
 }
 
 .container-side-bar {
+  overflow-x: hidden;
   background-color: brown;
+
+  height: 100%;
+
+  float: left;
 
   .sideBar {
     .side-bar-left {
-      display: none;
+      display: flex;
+      flex-direction: column;
+
+      ul > li {
+        padding: 5px;
+
+        font-size: 2rem;
+
+        a {
+          color: white;
+        }
+      }
     }
+  }
+}
+
+.container-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+.infor-groups {
+  width: 100%;
+  .groups {
+    width: 60%;
+    height: 50px;
+
+    background-color: rgba(0, 255, 255, 0.449);
+    margin: 5px auto;
+
+    border-radius: 5px;
   }
 }
